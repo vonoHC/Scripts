@@ -13,7 +13,7 @@ def sock(ip,port):
         print(f"[+] Puerto {port} en {ip} abierto.")
     cliente.close()
     
-ip = input("Ingrese la IP a escanear: ")
+ip = input("\nIngrese la IP a escanear: ")
 ports = int(input("\nIngrese el puerto limite que desea escanear: "))
 print()
     
