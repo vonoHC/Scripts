@@ -19,15 +19,16 @@ def main():
 
     parser.add_argument("-ip", "--ip", type=str, required=True, help="Direccion IP del objetivo.")
     parser.add_argument("-p", "--puertos", type=int, required=True, help="Numero de puertos a escanear.")
+    parser.add_argument("-t", "--hilos", type=int, required=True, help="Numero de puertos a escanear.")
 
     args = parser.parse_args()
 
     ip = args.ip
     puertos = args.puertos
-
+    hilos = args.hilos
     print(f"[-] Iniciando escaneo en {ip} desde el puerto 1 al {puertos}...\n")
 
-    with ThreadPoolExecutor(max_workers=100) as ejecutor:
+    with ThreadPoolExecutor(max_workers=hilos) as ejecutor:
         ejecutor.map(lambda p: sock(ip,p), range(1,puertos + 1))  
     print(f"\n[-] Escaneo a {ip} finalizado.")
 
