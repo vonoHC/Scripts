@@ -1,4 +1,4 @@
-# Escaner de Puertos
+# Escáner de Puertos
 
 ```python
 import socket
