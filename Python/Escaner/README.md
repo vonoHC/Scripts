@@ -13,8 +13,6 @@ def sock(ip,port):
         print(f"[+] Puerto {port}:{ip} abierto.")
     cliente.close()
     
-
-
 def main():
     
     parser = argparse.ArgumentParser(description="Escaner de puertos multihilo.")
