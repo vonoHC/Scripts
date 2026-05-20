@@ -24,15 +24,15 @@ El objetivo del proyecto es tener una herramienta rápida, flexible y fácil de 
 # Tecnologías utilizadas
 
 - Python 3
-- `socket`
-- `argparse`
-- `concurrent.futures`
+- Socket
+- Argparse
+- Concurrent.futures
 
 ---
 
 # Cómo funciona
 
-El script crea múltiples hilos usando `ThreadPoolExecutor` para intentar conexiones TCP a distintos puertos al mismo tiempo. Cada puerto abierto se muestra automáticamente en pantalla durante el escaneo.
+El script crea múltiples hilos usando el modulo `ThreadPoolExecutor` de `concurrent.futures` para intentar conexiones TCP a distintos puertos al mismo tiempo. Cada puerto abierto se muestra automáticamente en pantalla durante el escaneo.
 
 ---
 
