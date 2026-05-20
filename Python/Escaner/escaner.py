@@ -1,7 +1,7 @@
 import socket as sc,argparse
 from concurrent.futures import ThreadPoolExecutor
 
-def socket(ip,port):
+def socket_tcp(ip,port):
     ip = str(sc.gethostbyname(ip))
     cliente = sc.socket(sc.AF_INET,sc.SOCK_STREAM)
     cliente.settimeout(1)
@@ -9,6 +9,22 @@ def socket(ip,port):
     cliente.close()
     if resultado == 0:
         print(f"[+] Puerto {port} abierto.")
+        return port
+    return
+
+
+def socket_udp(ip,port):
+    ip = str(sc.gethostbyname(ip))
+    cliente = sc.socket(sc.AF_INET,sc.SOCK_DGRAM)
+    cliente.settimeout(1)
+    cliente.sendto(b"hola",(ip,port))
+    try:
+        resultado = cliente.recvfrom(1024)
+        cliente.close()
+        print(f"[+] Puerto {port} respondio.")
+        return port
+    except:
+        pass
     return
 
 def main():
@@ -18,6 +34,7 @@ def main():
     puerto = parser.add_mutually_exclusive_group(required=True)
 
     parser.add_argument("-t","--hilos",type=int,required=False,help="Numero de hilos. Ej. -t 100",default=1000)
+    parser.add_argument("-u","--udp",required=False,help="Escaneo UDP. Ej. -u ...",action="store_true")
 
     host.add_argument("-ip","--ip",type=str,help="Direccion IP del Host Objetivo. Ej. -ip 192.168.0.10")
     host.add_argument("-d","--domain",type=str,help="Nombre de Dominio del Host Objetivo. Ej. -d host.com")
@@ -27,6 +44,7 @@ def main():
     puerto.add_argument("-pr","--portrange",type=str,required=False,help="Rago de Puertos Especificos a Escanear. Indicado por guion, Ej. -pr 22-80",default=None)
 
     args = parser.parse_args()
+    udp = args.udp
     ip = args.ip
     domain = args.domain
     maxPort = args.maxport
@@ -34,26 +52,36 @@ def main():
     portRange = args.portrange
     hilos = args.hilos
   
+    if udp:
+        funcion = socket_udp; tlp = "UDP"
+    else:
+        funcion = socket_tcp; tlp = "TCP"
+
+    print()
     if port:
-        print(f"[-] Iniciando escaneo a {ip or domain} en los puertos {port}")
+        print(f"[-] Iniciando escaneo {tlp} a {ip or domain} en los puertos {port}.")
     elif maxPort:
-        print(f"[-] Iniciando escaneo a {ip or domain} hasta el puerto {maxPort}.")
+        print(f"[-] Iniciando escaneo {tlp} a {ip or domain} hasta el puerto {maxPort}.")
     elif portRange:
-        print(f"[-] Iniciando escaneo a {ip or domain} en el rango {portRange}.")
+        print(f"[-] Iniciando escaneo {tlp} a {ip or domain} en el rango {portRange}.")
     print()
         
     with ThreadPoolExecutor(max_workers=hilos) as ejecutor:
         if maxPort:
-            ejecutor.map(lambda p: socket(ip or domain,p), range(1,maxPort + 1))
+            resultado = ejecutor.map(lambda p: funcion(ip or domain,p), range(1,maxPort + 1))
         elif port:
              port = [int(p) for p in port.split(",")]
-             ejecutor.map(lambda p: socket(ip or domain,p), port)
+             resultado = ejecutor.map(lambda p: funcion(ip or domain,p), port)
         elif portRange:
             portRange = [int(p) for p in portRange.split("-")]
-            ejecutor.map(lambda p: socket(ip or domain,p), range(portRange[0],portRange[1] + 1))
+            resultado = ejecutor.map(lambda p: funcion(ip or domain,p), range(portRange[0],portRange[1] + 1))
     
-    print(f"\n[-] Escaneo a {ip or domain} finalizado.\n")
+    resultado = list(resultado); resultado = [p for p in resultado if p != None]; resultado.sort()
+
+    print(f"\n[-] Escaneo a {ip or domain} finalizado con {len(resultado)} puertos abiertos.\n")
 
 main()
+    
+
     
 
