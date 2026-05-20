@@ -105,7 +105,7 @@ python3 escaner.py -ip 192.168.0.5 -mp 1000 -u
 [+] Puerto 80 abierto.
 [+] Puerto 443 abierto.
 
-[-] Escaneo a google.com finalizado.
+[-] Escaneo a google.com finalizado con 2 puertos abiertos.
 ```
 
 ---
