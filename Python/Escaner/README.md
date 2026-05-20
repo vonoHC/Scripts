@@ -22,8 +22,6 @@ El objetivo del proyecto es tener una herramienta rápida, flexible y fácil de 
 ---
 
 # Tecnologías utilizadas
-
-* python 3
 * socket
 * argparse
 * concurrent.futures
