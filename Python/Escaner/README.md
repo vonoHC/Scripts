@@ -110,6 +110,6 @@ python3 escaner.py -ip 192.168.0.5 -mp 1000 -t 500
 
 ```text
 .
-├── scanner.py
+├── escaner.py
 └── README.md
 ```
