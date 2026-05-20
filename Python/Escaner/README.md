@@ -90,13 +90,17 @@ python3 escaner.py -ip 10.10.10.10 -mp 65535
 ```bash
 python3 escaner.py -ip 192.168.0.5 -mp 1000 -t 500
 ```
+### Escaneo UDP
+```bash
+python3 escaner.py -ip 192.168.0.5 -mp 1000 -u
+```
 
 ---
 
 # Ejemplo de salida
 
 ```text
-[-] Iniciando escaneo a google.com hasta el puerto 1000.
+[-] Iniciando escaneo TCP a google.com hasta el puerto 1000.
 
 [+] Puerto 80 abierto.
 [+] Puerto 443 abierto.
@@ -113,3 +117,8 @@ python3 escaner.py -ip 192.168.0.5 -mp 1000 -t 500
 ├── escaner.py
 └── README.md
 ```
+
+# Próximas implementaciones
+* **Recolección de Banners**: para obtener información sobre el servicio y la versión activa en el puerto escaneado.
+* **Exportación en formato JSON**: para almacenar los resultados del escaneo en un formato flexible.
+* **Implementación completa del escaneo UDP**: aunque actualmente este modo hace su función (enviar datos y esperar una respuesta para deducir el estado de un puerto), por la naturaleza del protocolo UDP es necesario enviar los datos en un formato específico para el servicio activo en cada puerto con el fin de conocer con precisión su estado.
