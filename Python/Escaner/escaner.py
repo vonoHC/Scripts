@@ -9,7 +9,7 @@ def socket(ip,port):
     cliente.close()
     if resultado == 0:
         print(f"[+] Puerto {port} abierto.")
-      return
+    return
 
 def main():
   
