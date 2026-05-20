@@ -12,7 +12,6 @@ def socket_tcp(ip,port):
         return port
     return
 
-
 def socket_udp(ip,port):
     ip = str(sc.gethostbyname(ip))
     cliente = sc.socket(sc.AF_INET,sc.SOCK_DGRAM)
@@ -80,8 +79,5 @@ def main():
 
     print(f"\n[-] Escaneo a {ip or domain} finalizado con {len(resultado)} puertos abiertos.\n")
 
-main()
-    
-
-    
-
+if __name__ == "__main__":  
+    main()
