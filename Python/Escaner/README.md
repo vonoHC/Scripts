@@ -1,63 +1,115 @@
-# Escáner de Puertos
-```python
-import socket
-import argparse
-from concurrent.futures import ThreadPoolExecutor
+# Escáner de Puertos Multihilo en Python
 
-def sock(ip,port):
+Escáner de puertos hecho en Python usando `socket`, `argparse` y `ThreadPoolExecutor`.  
+El objetivo del proyecto es tener una herramienta rápida, flexible y fácil de usar desde la terminal.
 
-    cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    cliente.settimeout(1)
-    resultado = cliente.connect_ex((ip,port))
-    if resultado == 0:
-        banner = "No Banner."
-        try:
-            banner = cliente.recv(1024)
-            if banner:
-                banner = f"     {banner.decode('utf-8',errors='ignore').replace("\r", "").replace("\n", " ")}"
-        except socket.timeout:
-           pass
-        cliente.close()
-        return (port,banner)
-    cliente.close()
-    return
-    
-def main():
-    
-    parser = argparse.ArgumentParser(description="Escaner de puertos multihilo.")
+---
 
-    parser.add_argument("-ip", "--ip", type=str, required=True, help="Direccion IP del objetivo.")
-    parser.add_argument("-p", "--puertos", type=int, required=True, help="Numero de puertos a escanear.")
-    parser.add_argument("-t", "--hilos", type=int, required=True, help="Numero de hilos.")
+## ¿Qué puede hacer?
 
-    args = parser.parse_args()
+- Escaneo multihilo para acelerar el proceso.
+- Resolución automática de dominios (`google.com → IP`).
+- Soporte para:
+  - Puertos específicos.
+  - Rangos de puertos.
+  - Escaneo hasta un puerto máximo.
+- Permite elegir si el objetivo será:
+  - una IP
+  - o un dominio.
+- Posibilidad de definir la cantidad de hilos.
+- Todo configurable directamente desde la terminal gracias a `argparse`.
 
-    ip = args.ip
-    puertos = args.puertos
-    hilos = args.hilos
+---
 
-    print(f"\n[-] Iniciando escaneo en {ip} desde el puerto 1 al {puertos}...\n")
+# Tecnologías utilizadas
 
-    with ThreadPoolExecutor(max_workers=hilos or 100) as ejecutor:
-        resultado = ejecutor.map(lambda p: sock(ip,p), range(1,puertos + 1))  
+- Python 3
+- `socket`
+- `argparse`
+- `concurrent.futures`
 
-    resultado = list(resultado)
-    resultado = [port for port in resultado if port != None]
-    resultado.sort(key=lambda x: x[0])
-    
+---
 
-    for port,banner in resultado:
-        print(f"[+] Puerto {port:<5} abierto | {banner}")
+# Cómo funciona
 
-    
-    print(f"\n[-] Escaneo a {ip} finalizado con {len(resultado)} puertos abiertos.\n")
-    ```
+El script crea múltiples hilos usando `ThreadPoolExecutor` para intentar conexiones TCP a distintos puertos al mismo tiempo. Cada puerto abierto se muestra automáticamente en pantalla durante el escaneo.
 
-    
+---
 
-    
+# Uso
 
-if __name__ == "__main__":
-    main()
+## Escanear usando una IP
 
+```bash
+python3 escaner.py -ip 192.168.0.10 -mp 1000
+```
 
+## Escanear usando un dominio
+
+```bash
+python3 escaner.py -d google.com -mp 1000
+```
+
+---
+
+# Argumentos disponibles
+
+| Argumento | Descripción |
+|---|---|
+| `-ip` / `--ip` | IP objetivo |
+| `-d` / `--domain` | Dominio objetivo |
+| `-t` / `--hilos` | Cantidad de hilos |
+| `-mp` / `--maxport` | Escanea desde el puerto 1 hasta el indicado |
+| `-p` / `--port` | Puertos específicos separados por coma |
+| `-pr` / `--portrange` | Rango de puertos |
+
+---
+
+# Ejemplos
+
+## Puertos específicos
+
+```bash
+python3 escaner.py -ip 192.168.1.1 -p 21,22,80,443
+```
+
+## Rango de puertos
+
+```bash
+python3 escaner.py -d example.com -pr 20-100
+```
+
+## Escaneo completo hasta un puerto máximo
+
+```bash
+python3 escaner.py -ip 10.10.10.10 -mp 65535
+```
+
+## Cambiando la cantidad de hilos
+
+```bash
+python3 escaner.py -ip 192.168.0.5 -mp 1000 -t 500
+```
+
+---
+
+# Ejemplo de salida
+
+```text
+[-] Iniciando escaneo a google.com hasta el puerto 1000.
+
+[+] Puerto 80 abierto.
+[+] Puerto 443 abierto.
+
+[-] Escaneo a google.com finalizado.
+```
+
+---
+
+# Estructura
+
+```text
+.
+├── scanner.py
+└── README.md
+```
