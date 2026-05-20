@@ -8,7 +8,7 @@ El objetivo del proyecto es tener una herramienta rápida, flexible y fácil de 
 ## ¿Qué puede hacer?
 
 - Escaneo multihilo para acelerar el proceso.
-- Resolución automática de dominios (`google.com → IP`).
+- Resolución automática de dominios (`example.com → IP`).
 - Soporte para:
   - Puertos específicos.
   - Rangos de puertos.
@@ -47,7 +47,7 @@ python3 escaner.py -ip 192.168.0.10 -mp 1000
 ## Escanear usando un dominio
 
 ```bash
-python3 escaner.py -d google.com -mp 1000
+python3 escaner.py -d example.com -mp 1000
 ```
 
 ---
@@ -70,7 +70,7 @@ python3 escaner.py -d google.com -mp 1000
 ## Puertos específicos
 
 ```bash
-python3 escaner.py -ip 192.168.1.1 -p 21,22,80,443
+python3 escaner.py -ip 192.168.0.10 -p 21,22,80,443
 ```
 
 ## Rango de puertos
@@ -82,17 +82,17 @@ python3 escaner.py -d example.com -pr 20-100
 ## Escaneo completo hasta un puerto máximo
 
 ```bash
-python3 escaner.py -ip 10.10.10.10 -mp 65535
+python3 escaner.py -ip 192.168.0.10 -mp 65535
 ```
 
 ## Cambiando la cantidad de hilos
 
 ```bash
-python3 escaner.py -ip 192.168.0.5 -mp 1000 -t 500
+python3 escaner.py -ip 192.168.0.10 -mp 1000 -t 500
 ```
 ### Escaneo UDP
 ```bash
-python3 escaner.py -ip 192.168.0.5 -mp 1000 -u
+python3 escaner.py -ip 192.168.0.10 -mp 1000 -u
 ```
 
 ---
@@ -100,12 +100,12 @@ python3 escaner.py -ip 192.168.0.5 -mp 1000 -u
 # Ejemplo de salida
 
 ```text
-[-] Iniciando escaneo TCP a google.com hasta el puerto 1000.
+[-] Iniciando escaneo TCP a example.com hasta el puerto 1000.
 
 [+] Puerto 80 abierto.
 [+] Puerto 443 abierto.
 
-[-] Escaneo a google.com finalizado con 2 puertos abiertos.
+[-] Escaneo a example.com finalizado con 2 puertos abiertos.
 ```
 
 ---
