@@ -32,24 +32,27 @@ def main():
     host = parser.add_mutually_exclusive_group(required=True)
     puerto = parser.add_mutually_exclusive_group(required=True)
 
-    parser.add_argument("-t","--hilos",type=int,required=False,help="Numero de hilos. Ej. -t 100",default=1000)
+    parser.add_argument("-t","--hilos",type=int,required=False,help="Numero de hilos. Ej. -t 100\nPor Defecto: '1000'",default=1000)
+    parser.add_argument("-to","--timeout",type=int,required=False,help="Numero de hilos. Ej. -to 1\nPor Defecto: '1'",default=0.5)
     parser.add_argument("-u","--udp",required=False,help="Escaneo UDP. Ej. -u ...",action="store_true")
 
     host.add_argument("-ip","--ip",type=str,help="Direccion IP del Host Objetivo. Ej. -ip 192.168.0.10")
-    host.add_argument("-d","--domain",type=str,help="Nombre de Dominio del Host Objetivo. Ej. -d host.com")
+    host.add_argument("-d","--domain",type=str,help="Nombre de Dominio del Host Objetivo. Ej. -d example.com")
 
     puerto.add_argument("-mp","--maxport",type=int,required=False,help="Puerto Maximo a Escanear. Ej. -mp 65535",default=None)
     puerto.add_argument("-p","--port",type=str,required=False,help="Puertos Especificos a Escanear. Separados por coma, Ej. -p 21,22,80",default=None)
     puerto.add_argument("-pr","--portrange",type=str,required=False,help="Rago de Puertos Especificos a Escanear. Indicado por guion, Ej. -pr 22-80",default=None)
 
     args = parser.parse_args()
+    hilos = args.hilos
+    timeout = args.timeout
     udp = args.udp
     ip = args.ip
     domain = args.domain
     maxPort = args.maxport
     port = args.port
     portRange = args.portrange
-    hilos = args.hilos
+    
   
     if udp:
         funcion = socket_udp; tlp = "UDP"
