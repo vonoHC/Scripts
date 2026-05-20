@@ -7,32 +7,32 @@ El objetivo del proyecto es tener una herramienta rápida, flexible y fácil de 
 
 ## ¿Qué puede hacer?
 
-- Escaneo multihilo para acelerar el proceso.
-- Resolución automática de dominios (`example.com → IP`).
-- Soporte para:
-  - Puertos específicos.
-  - Rangos de puertos.
-  - Escaneo hasta un puerto máximo.
-- Permite elegir si el objetivo será:
-  - una IP
-  - o un dominio.
-- Posibilidad de definir la cantidad de hilos.
-- Todo configurable directamente desde la terminal gracias a `argparse`.
+* Escaneo multihilo para acelerar el proceso.
+* Resolución automática de dominios (`example.com → IP`).
+* Soporte para:
+  * Puertos específicos.
+  * Rangos de puertos.
+  * Escaneo hasta un puerto máximo.
+* Permite elegir si el objetivo será:
+  * una IP
+  * o un dominio.
+* Posibilidad de definir la cantidad de hilos.
+* Todo configurable directamente desde la terminal gracias a `argparse`.
 
 ---
 
 # Tecnologías utilizadas
 
-- Python 3
-- Socket
-- Argparse
-- Concurrent.futures
+* Python 3
+* socket
+* argparse
+* concurrent.futures
 
 ---
 
 # Cómo funciona
 
-El script crea múltiples hilos usando el modulo `ThreadPoolExecutor` de `concurrent.futures` para intentar conexiones TCP a distintos puertos al mismo tiempo. Cada puerto abierto se muestra automáticamente en pantalla durante el escaneo.
+El script crea múltiples hilos usando la clase `ThreadPoolExecutor` de `concurrent.futures` para intentar conexiones TCP a distintos puertos al mismo tiempo. Cada puerto abierto se muestra automáticamente en pantalla durante el escaneo.
 
 ---
 
