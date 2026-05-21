@@ -39,7 +39,7 @@ El script crea múltiples hilos usando la clase `ThreadPoolExecutor` de `concurr
 ## Escanear usando una IP
 
 ```bash
-python3 escaner.py -ip 192.168.0.10 -mp 1000
+python3 escaner.py -i 192.168.0.10 -m 1000
 ```
 
 ## Escanear usando un dominio
@@ -54,12 +54,13 @@ python3 escaner.py -d example.com -mp 1000
 
 | Argumento | Descripción |
 |---|---|
-| `-ip` / `--ip` | IP objetivo |
-| `-d` / `--domain` | Dominio objetivo |
+| `-i` / `--ip` | IP o dominio objetivo |
 | `-t` / `--hilos` | Cantidad de hilos |
-| `-mp` / `--maxport` | Escanea desde el puerto 1 hasta el indicado |
+| `-tm` / `--timeout` | Tiempo de espera |
+| `-m` / `--maxport` | Escanea desde el puerto 1 hasta el indicado |
 | `-p` / `--port` | Puertos específicos separados por coma |
-| `-pr` / `--portrange` | Rango de puertos |
+| `-r` / `--portrange` | Rango de puertos |
+| `-u` / `--udp` | Escaneo UDP |
 
 ---
 
@@ -68,29 +69,29 @@ python3 escaner.py -d example.com -mp 1000
 ## Puertos específicos
 
 ```bash
-python3 escaner.py -ip 192.168.0.10 -p 21,22,80,443
+python3 escaner.py -i 192.168.0.10 -p 21,22,80,443
 ```
 
 ## Rango de puertos
 
 ```bash
-python3 escaner.py -d example.com -pr 20-100
+python3 escaner.py -i example.com -r 20-100
 ```
 
 ## Escaneo completo hasta un puerto máximo
 
 ```bash
-python3 escaner.py -ip 192.168.0.10 -mp 65535
+python3 escaner.py -i 192.168.0.10 -m 65535
 ```
 
 ## Cambiando la cantidad de hilos
 
 ```bash
-python3 escaner.py -ip 192.168.0.10 -mp 1000 -t 500
+python3 escaner.py -i 192.168.0.10 -m 1000 -t 500
 ```
 ### Escaneo UDP
 ```bash
-python3 escaner.py -ip 192.168.0.10 -mp 1000 -u
+python3 escaner.py -i 192.168.0.10 -m 1000 -u
 ```
 
 ---
