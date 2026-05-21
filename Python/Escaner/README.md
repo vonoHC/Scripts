@@ -57,7 +57,7 @@ python3 escaner.py -i example.com -m 1000
 | `-i` / `--ip` | IP o dominio objetivo |
 | `-t` / `--hilos` | Cantidad de hilos |
 | `-tm` / `--timeout` | Tiempo de espera |
-| `-m` / `--maxport` | Escanea desde el puerto 1 hasta el indicado |
+| `-m` / `--maxport` | Escanea desde el puerto 1 hasta el puerto indicado |
 | `-p` / `--port` | Puertos específicos separados por coma |
 | `-r` / `--portrange` | Rango de puertos |
 | `-u` / `--udp` | Escaneo UDP |
