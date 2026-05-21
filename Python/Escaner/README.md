@@ -97,14 +97,42 @@ python3 escaner.py -i 192.168.0.10 -m 1000 -u
 ---
 
 # Ejemplo de salida
+> Escaneo realizado a [Metasploitable](https://github.com/vonoHC/Writeups/tree/main/Metasploitable)
 
-```text
-[-] Iniciando escaneo TCP a example.com hasta el puerto 1000.
+```bash
+py.exe .\lambda.py -i 192.168.5.143 -m 65535
 
-[+] Puerto 80 abierto.
-[+] Puerto 443 abierto.
+[-] Iniciando escaneo TCP a 192.168.5.143 hasta el puerto 65535.
 
-[-] Escaneo a example.com finalizado con 2 puertos abiertos.
+[+] 21   /ftp             [ABIERTO]
+[+] 22   /ssh             [ABIERTO]
+[+] 23   /telnet          [ABIERTO]
+[+] 25   /smtp            [ABIERTO]
+[+] 53   /domain          [ABIERTO]
+[+] 80   /http            [ABIERTO]
+[+] 111  /sunrpc          [ABIERTO]
+[+] 139  /netbios-ssn     [ABIERTO]
+[+] 445  /microsoft-ds    [ABIERTO]
+[+] 512  /exec            [ABIERTO]
+[+] 513  /login           [ABIERTO]
+[+] 514  /cmd             [ABIERTO]
+[+] 2049 /Desconocido     [ABIERTO]
+[+] 3306 /Desconocido     [ABIERTO]
+[+] 3632 /Desconocido     [ABIERTO]
+[+] 5432 /Desconocido     [ABIERTO]
+[+] 5900 /Desconocido     [ABIERTO]
+[+] 6667 /Desconocido     [ABIERTO]
+[+] 6697 /Desconocido     [ABIERTO]
+[+] 8009 /Desconocido     [ABIERTO]
+[+] 8180 /Desconocido     [ABIERTO]
+[+] 8787 /Desconocido     [ABIERTO]
+[+] 34097/Desconocido     [ABIERTO]
+[+] 37783/Desconocido     [ABIERTO]
+[+] 41530/Desconocido     [ABIERTO]
+[+] 60735/Desconocido     [ABIERTO]
+
+[-] Escaneo a 192.168.5.143 finalizado con 26 puertos abiertos.
+
 ```
 
 ---
