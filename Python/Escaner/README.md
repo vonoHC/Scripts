@@ -1,151 +1,142 @@
-# Escáner de Puertos Multihilo en Python
+# ⚡ Escáner de Puertos Multihilo en Python
 
-Escáner de puertos hecho en Python usando `socket`, `argparse` y `ThreadPoolExecutor`.  
-El objetivo del proyecto es tener una herramienta rápida, flexible y fácil de usar desde la terminal.
-
----
-
-## ¿Qué puede hacer?
-
-* Escaneo multihilo para acelerar el proceso.
-* Resolución automática de dominios (`example.com → IP`).
-* Soporte para:
-  * Puertos específicos.
-  * Rangos de puertos.
-  * Escaneo hasta un puerto máximo.
-* Permite elegir si el objetivo será:
-  * una IP
-  * o un dominio.
-* Posibilidad de definir la cantidad de hilos.
-* Todo configurable directamente desde la terminal gracias a `argparse`.
+Herramienta de escaneo de puertos desarrollada en Python, diseñada para realizar análisis rápidos sobre hosts remotos usando múltiples hilos, con soporte para TCP y UDP, resolución automática de dominios y detección del nombre del servicio asociado a cada puerto.
 
 ---
 
-# Tecnologías utilizadas
-* socket
-* argparse
-* concurrent.futures
+# ✨ Características principales
+
+- 🚀 Escaneo multihilo para mayor velocidad.
+- 🌐 Soporte para protocolos TCP y UDP.
+- 🎯 Escaneo de puertos específicos.
+- 📡 Escaneo por rango de puertos.
+- 🔎 Resolución automática de dominios a IP.
+- 🧠 Detección automática del servicio asociado al puerto.
+- ⏱️ Timeout configurable.
+- 🖥️ Compatible con IPs y dominios.
+- 📋 Resultados ordenados y fáciles de leer.
 
 ---
 
-# Cómo funciona
+# 📌 Requisitos
 
-El script crea múltiples hilos usando la clase `ThreadPoolExecutor` de `concurrent.futures` para intentar conexiones TCP a distintos puertos al mismo tiempo. Cada puerto abierto se muestra automáticamente en pantalla durante el escaneo.
+- Python 3.x
+
+El proyecto utiliza únicamente módulos estándar de Python:
+
+- `socket`
+- `argparse`
+- `concurrent.futures`
+
+No requiere instalación de dependencias externas.
 
 ---
 
-# Uso
+# 🚀 Instalación
 
-## Escanear usando una IP
+Clonar el repositorio:
 
 ```bash
-python3 escaner.py -i 192.168.0.10 -m 1000
+git clone https://github.com/tuusuario/tu-repo.git
+cd tu-repo
 ```
 
-## Escanear usando un dominio
+Ejecutar el script:
 
 ```bash
-python3 escaner.py -i example.com -m 1000
+python3 scanner.py
 ```
 
 ---
 
-# Argumentos disponibles
+# 🛠️ Uso
+
+## Escanear puertos específicos
+
+```bash
+python3 scanner.py -i 192.168.1.10 -p 21,22,80
+```
+
+## Escanear un rango de puertos
+
+```bash
+python3 scanner.py -i 192.168.1.10 -r 1024
+```
+
+## Escaneo UDP
+
+```bash
+python3 scanner.py -i 192.168.1.10 -p 53,123,161 -u
+```
+
+## Aumentar número de hilos
+
+```bash
+python3 scanner.py -i 192.168.1.10 -r 65535 -t 200
+```
+
+## Cambiar timeout
+
+```bash
+python3 scanner.py -i 192.168.1.10 -r 1000 -tm 0.5
+```
+
+---
+
+# ⚙️ Argumentos
 
 | Argumento | Descripción |
 |---|---|
-| `-i` / `--ip` | IP o dominio objetivo |
-| `-t` / `--hilos` | Cantidad de hilos |
-| `-tm` / `--timeout` | Tiempo de espera |
-| `-m` / `--maxport` | Escanea desde el puerto 1 hasta el puerto indicado |
-| `-p` / `--port` | Puertos específicos separados por coma |
-| `-r` / `--portrange` | Rango de puertos |
-| `-u` / `--udp` | Escaneo UDP |
+| `-i`, `--host` | IP o dominio objetivo |
+| `-p`, `--port` | Puertos específicos separados por coma |
+| `-r`, `--portrange` | Escanea desde el puerto 1 hasta el puerto indicado |
+| `-u`, `--udp` | Activa el escaneo UDP |
+| `-t`, `--hilos` | Número de hilos a utilizar |
+| `-tm`, `--timeout` | Tiempo límite de espera |
+| `-b`, `--bannergrapper` | Opción reservada para banner grabbing |
 
 ---
 
-# Ejemplos
-
-## Puertos específicos
+# 📤 Ejemplo de salida
 
 ```bash
-python3 escaner.py -i 192.168.0.10 -p 21,22,80,443
-```
-
-## Rango de puertos
-
-```bash
-python3 escaner.py -i example.com -r 20-100
-```
-
-## Escaneo completo hasta un puerto máximo
-
-```bash
-python3 escaner.py -i 192.168.0.10 -m 65535
-```
-
-## Cambiando la cantidad de hilos
-
-```bash
-python3 escaner.py -i 192.168.0.10 -m 1000 -t 500
-```
-### Escaneo UDP
-```bash
-python3 escaner.py -i 192.168.0.10 -m 1000 -u
-```
-
----
-
-# Ejemplo de salida
-> Escaneo realizado a [Metasploitable](https://github.com/vonoHC/Writeups/tree/main/Metasploitable)
-
-```bash
-py.exe .\escaner.py -i 192.168.5.143 -m 65535
-
-[-] Iniciando escaneo TCP a 192.168.5.143 hasta el puerto 65535.
+[-] Iniciando escaneo TCP a 192.168.1.10 en los puertos 21,22,80.
 
 [+] 21   /ftp             [ABIERTO]
 [+] 22   /ssh             [ABIERTO]
-[+] 23   /telnet          [ABIERTO]
-[+] 25   /smtp            [ABIERTO]
-[+] 53   /domain          [ABIERTO]
 [+] 80   /http            [ABIERTO]
-[+] 111  /sunrpc          [ABIERTO]
-[+] 139  /netbios-ssn     [ABIERTO]
-[+] 445  /microsoft-ds    [ABIERTO]
-[+] 512  /exec            [ABIERTO]
-[+] 513  /login           [ABIERTO]
-[+] 514  /cmd             [ABIERTO]
-[+] 2049 /Desconocido     [ABIERTO]
-[+] 3306 /Desconocido     [ABIERTO]
-[+] 3632 /Desconocido     [ABIERTO]
-[+] 5432 /Desconocido     [ABIERTO]
-[+] 5900 /Desconocido     [ABIERTO]
-[+] 6667 /Desconocido     [ABIERTO]
-[+] 6697 /Desconocido     [ABIERTO]
-[+] 8009 /Desconocido     [ABIERTO]
-[+] 8180 /Desconocido     [ABIERTO]
-[+] 8787 /Desconocido     [ABIERTO]
-[+] 34097/Desconocido     [ABIERTO]
-[+] 37783/Desconocido     [ABIERTO]
-[+] 41530/Desconocido     [ABIERTO]
-[+] 60735/Desconocido     [ABIERTO]
 
-[-] Escaneo a 192.168.5.143 finalizado con 26 puertos abiertos.
-
+[-] Escaneo a 192.168.1.10 finalizado con 3 puertos abiertos.
 ```
 
 ---
 
-# Estructura
+# 🔍 Funcionamiento
 
-```text
-.
-├── escaner.py
-└── README.md
-```
+El escáner realiza los siguientes pasos:
 
-# Próximas implementaciones
-* **Recolección de Banners**: para obtener información sobre el servicio y la versión activa en el puerto escaneado.
-* **Exportación en formato JSON**: para almacenar los resultados del escaneo en un formato flexible.
-* **Implementación completa del escaneo UDP**: aunque actualmente este modo hace su función (enviar datos y esperar una respuesta para deducir el estado de un puerto), por la naturaleza del protocolo UDP es necesario enviar los datos en un formato específico para el servicio activo en cada puerto con el fin de conocer con precisión su estado.
+1. Resuelve automáticamente el dominio a una dirección IP.
+2. Selecciona el modo TCP o UDP.
+3. Genera múltiples hilos usando `ThreadPoolExecutor`.
+4. Envía conexiones simultáneas a los puertos objetivo.
+5. Detecta puertos abiertos y muestra el servicio asociado.
+
+---
+
+# 📘 Notas
+
+- TCP utiliza `connect_ex()` para verificar conexiones abiertas.
+- UDP envía un paquete y espera respuesta.
+- Algunos puertos UDP pueden no responder aunque estén abiertos.
+- Los resultados se muestran ordenados al finalizar el escaneo.
+- La opción `--bannergrapper` aún no está implementada.
+
+---
+
+# 🧠 Tecnologías utilizadas
+
+- Python 3
+- Socket Programming
+- Multithreading
+- ThreadPoolExecutor
+
