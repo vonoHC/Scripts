@@ -45,7 +45,7 @@ python3 escaner.py -i 192.168.0.10 -m 1000
 ## Escanear usando un dominio
 
 ```bash
-python3 escaner.py -d example.com -mp 1000
+python3 escaner.py -i example.com -m 1000
 ```
 
 ---
