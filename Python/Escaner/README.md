@@ -100,7 +100,7 @@ python3 escaner.py -i 192.168.0.10 -m 1000 -u
 > Escaneo realizado a [Metasploitable](https://github.com/vonoHC/Writeups/tree/main/Metasploitable)
 
 ```bash
-py.exe .\lambda.py -i 192.168.5.143 -m 65535
+py.exe .\escaner.py -i 192.168.5.143 -m 65535
 
 [-] Iniciando escaneo TCP a 192.168.5.143 hasta el puerto 65535.
 
