@@ -1,7 +1,7 @@
 import socket as sc,argparse
 from concurrent.futures import ThreadPoolExecutor,as_completed
 
-def socket_tcp(ip,port,timeout,bannergrapper=""):
+def socket_tcp(ip,port,timeout,banner=False):
     cliente = sc.socket(sc.AF_INET,sc.SOCK_STREAM)
     cliente.settimeout(timeout)
     servicio = "Desconocido"
@@ -47,7 +47,7 @@ def main():
     parser.add_argument("-t","--hilos",type=int,required=False,help="Numero de hilos.       Ej: -t 200;     Por Defecto: '100'",default=100)
     parser.add_argument("-tm","--timeout",type=float,required=False,help="Tiempo Limite.        Ej: -to 0.5;      Por Defecto: '0.3'",default=0.3)
     parser.add_argument("-u","--udp",required=False,help="Escaneo UDP.      Ej: -u ...",action="store_true")
-    parser.add_argument("-b","--bannergrapper",required=False,help="Recolector de Banner.       Al activar esta opcion los resultados del escaneo seran mostrados al concluir el mismo.",action="store_true")
+    parser.add_argument("-b","--bannergrabber",required=False,help="Recolector de Banner.       Al activar esta opcion los resultados del escaneo seran mostrados al concluir el mismo.",action="store_true")
     
     parser.add_argument("-i","--host",type=str,required=True,help="IP/Dominio del Host Objetivo.        Ej. -ip 192.168.0.10 | -i example.com")
 
@@ -62,7 +62,7 @@ def main():
     host = args.host
     port = args.port
     portrange = args.portrange
-    bannergrapper = args.bannergrapper
+    banner = args.bannergrabber
 
     try:
         host = sc.gethostbyname(host)
@@ -88,10 +88,10 @@ def main():
 
         if port:
             port = [int(p) for p in port.split(",")]
-            futures = [ejecutor.submit(funcion,host,p,timeout) for p in port]
+            futures = [ejecutor.submit(funcion,host,p,timeout,banner) for p in port]
 
         elif portrange:
-            futures = [ejecutor.submit(funcion,host,p,timeout) for p in range(1,portrange + 1)]
+            futures = [ejecutor.submit(funcion,host,p,timeout,banner) for p in range(1,portrange + 1)]
 
         for future in as_completed(futures):
             try:
