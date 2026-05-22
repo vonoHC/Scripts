@@ -19,7 +19,7 @@ Permite consultar headers, ver sus valores individuales y exportarlos a un archi
 
 ## Vista previa
 
-```bash
+```
   ==============================================
 ||          Recolector de Headers HTTP          ||
   ==============================================
@@ -27,7 +27,7 @@ Permite consultar headers, ver sus valores individuales y exportarlos a un archi
 [*] Ingrese la URL a consultar: https://example.com
 ```
 
-```bash
+```
 guest@wrapper:~$ show heads
 
  -----------------------------------------
@@ -54,14 +54,14 @@ guest@wrapper:~$ show heads
 
 Clona el repositorio:
 
-```bash
+```
 git clone https://github.com/usuario/header-wrapper.git
 cd header-wrapper
 ```
 
 Instala las dependencias:
 
-```bash
+```
 pip install requests
 ```
 
@@ -71,19 +71,19 @@ pip install requests
 
 Ejecuta el programa:
 
-```bash
+```
 python HTTPGrabber.py
 ```
 
 Luego ingresa una URL válida:
 
-```bash
+```
 https://example.com
 ```
 
 o
 
-```bash
+```
 http://192.168.1.1
 ```
 
@@ -106,13 +106,13 @@ http://192.168.1.1
 
 El programa permite guardar los encabezados HTTP en un archivo local:
 
-```bash
+```
 guest@wrapper:~$ export heads
 ```
 
 Ejemplo:
 
-```bash
+```
 headers.txt
 ```
 
@@ -129,7 +129,7 @@ headers.txt
 
 ## Estructura del Proyecto
 
-```bash
+```
 header-wrapper/
 │
 ├── main.py
