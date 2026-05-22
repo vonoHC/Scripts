@@ -53,7 +53,7 @@ def main():
     
     while True:
         try:
-            url = input("\n[*] Ingrese la URL a consultar: ")
+            url = input("\n[+] Ingrese la URL a consultar: ")
             solicitud = Wrapper(url)
             break
         except:
@@ -69,17 +69,17 @@ def main():
         comando = input()
         match comando.lower().replace(" ",""):
             case "?":
-                print("\n'?' - Muestra los comandos disponibles.\n'show heads' - Muestra los headers de respuesta de la web indicada.\n'show headval' - Muestra el valor del header indicado.\n'export heads' - Guarda los headers de respuesta en un archivo local.\n'cls' | 'clear' - Limpia la terminal.\n'ls | dir' - Muestra el contenido del directorio actual en el sistema.")
+                print("\n'?' - Muestra los comandos disponibles.\n'show heads' - Muestra los headers de respuesta de la web indicada.\n'show headval' - Muestra el valor del header indicado.\n'export heads' - Guarda los headers de respuesta en un archivo local.\n'cls' | 'clear' - Limpia la terminal.\n'ls | dir' - Muestra el contenido del directorio actual en el sistema.\n'exit' - Finaliza el programa.")
             case "showheads":
                 solicitud.printHeaders()
             case "showheadval":
-                head = int(input("\n[*] Indique el numero de header a consultar: "))
+                head = int(input("\n[+] Indique el numero de header a consultar: "))
                 try:
                     solicitud.getHeaderValue(head)
                 except:
                     print("\n[!] Header no valido. Ingrese una de las opciones mostradas en la tabla de 'show heads'.")
             case "exportheads":
-                file = input("\n[*] Indique el nombre del archivo: ")
+                file = input("\n[+] Indique el nombre del archivo: ")
                 try:
                     solicitud.exportFile(file)
                     print(f"[+] {file} creado con exito.\n")
@@ -94,7 +94,9 @@ def main():
                     print()
                 except:
                     print("No se pudo mostrar el contenido del directorio actual en el sistema.")
-
+            case "exit":
+                print("\n[*] Hasta luego!\n")
+                break
             case _:
                 print("\n[!] Opcion invalida. Use los comandos listados en '?'.\n")
             
