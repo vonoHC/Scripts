@@ -72,7 +72,7 @@ pip install requests
 Ejecuta el programa:
 
 ```bash
-python main.py
+python HTTPGrabber.py
 ```
 
 Luego ingresa una URL válida:
@@ -133,7 +133,6 @@ headers.txt
 header-wrapper/
 │
 ├── main.py
-├── README.md
-└── requirements.txt
+└── README.md
 ```
 ---
