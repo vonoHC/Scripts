@@ -44,7 +44,7 @@ cd tu-repo
 Ejecutar el script:
 
 ```bash
-python3 scanner.py
+python3 escaner.py
 ```
 
 ---
@@ -54,31 +54,31 @@ python3 scanner.py
 ## Escanear puertos específicos
 
 ```bash
-python3 scanner.py -i 192.168.1.10 -p 21,22,80
+python3 escaner.py -i 192.168.1.10 -p 21,22,80
 ```
 
 ## Escanear un rango de puertos
 
 ```bash
-python3 scanner.py -i 192.168.1.10 -r 1024
+python3 escaner.py -i 192.168.1.10 -r 1024
 ```
 
 ## Escaneo UDP
 
 ```bash
-python3 scanner.py -i 192.168.1.10 -p 53,123,161 -u
+python3 escaner.py -i 192.168.1.10 -p 53,123,161 -u
 ```
 
 ## Aumentar número de hilos
 
 ```bash
-python3 scanner.py -i 192.168.1.10 -r 65535 -t 200
+python3 escaner.py -i 192.168.1.10 -r 65535 -t 200
 ```
 
 ## Cambiar timeout
 
 ```bash
-python3 scanner.py -i 192.168.1.10 -r 1000 -tm 0.5
+python3 escaner.py -i 192.168.1.10 -r 1000 -tm 0.5
 ```
 
 ---
