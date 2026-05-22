@@ -1,24 +1,24 @@
-# ⚡ Escáner de Puertos Multihilo en Python
+# Escáner de Puertos Multihilo en Python
 
 Herramienta de escaneo de puertos desarrollada en Python, diseñada para realizar análisis rápidos sobre hosts remotos usando múltiples hilos, con soporte para TCP y UDP, resolución automática de dominios y detección del nombre del servicio asociado a cada puerto.
 
 ---
 
-# ✨ Características principales
+# Características principales
 
-- 🚀 Escaneo multihilo para mayor velocidad.
-- 🌐 Soporte para protocolos TCP y UDP.
-- 🎯 Escaneo de puertos específicos.
-- 📡 Escaneo por rango de puertos.
-- 🔎 Resolución automática de dominios a IP.
-- 🧠 Detección automática del servicio asociado al puerto.
-- ⏱️ Timeout configurable.
-- 🖥️ Compatible con IPs y dominios.
-- 📋 Resultados ordenados y fáciles de leer.
+- Escaneo multihilo para mayor velocidad.
+- Soporte para protocolos TCP y UDP.
+- Escaneo de puertos específicos.
+- Escaneo por rango de puertos.
+- Resolución automática de dominios a IP.
+- Detección automática del servicio asociado al puerto.
+- Timeout configurable.
+- Compatible con IPs y dominios.
+- Resultados ordenados y fáciles de leer.
 
 ---
 
-# 📌 Requisitos
+#  Requisitos
 
 - Python 3.x
 
@@ -32,7 +32,7 @@ No requiere instalación de dependencias externas.
 
 ---
 
-# 🚀 Instalación
+# Instalación
 
 Clonar el repositorio:
 
@@ -49,7 +49,7 @@ python3 escaner.py
 
 ---
 
-# 🛠️ Uso
+# Uso
 
 ## Escanear puertos específicos
 
@@ -83,7 +83,7 @@ python3 escaner.py -i 192.168.1.10 -r 1000 -tm 0.5
 
 ---
 
-# ⚙️ Argumentos
+# Argumentos
 
 | Argumento | Descripción |
 |---|---|
@@ -97,7 +97,7 @@ python3 escaner.py -i 192.168.1.10 -r 1000 -tm 0.5
 
 ---
 
-# 📤 Ejemplo de salida
+# Ejemplo de salida
 
 ```bash
 [-] Iniciando escaneo TCP a 192.168.1.10 en los puertos 21,22,80.
@@ -111,7 +111,7 @@ python3 escaner.py -i 192.168.1.10 -r 1000 -tm 0.5
 
 ---
 
-# 🔍 Funcionamiento
+# Funcionamiento
 
 El escáner realiza los siguientes pasos:
 
@@ -123,7 +123,7 @@ El escáner realiza los siguientes pasos:
 
 ---
 
-# 📘 Notas
+# Notas
 
 - TCP utiliza `connect_ex()` para verificar conexiones abiertas.
 - UDP envía un paquete y espera respuesta.
@@ -133,7 +133,7 @@ El escáner realiza los siguientes pasos:
 
 ---
 
-# 🧠 Tecnologías utilizadas
+# Tecnologías utilizadas
 
 - Python 3
 - Socket Programming
