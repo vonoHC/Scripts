@@ -130,9 +130,9 @@ headers.txt
 ## Estructura del Proyecto
 
 ```
-header-wrapper/
+Recolector de encabezados HTTP/
 │
-├── main.py
+├── HTTPGrabber.py
 └── README.md
 ```
 ---
