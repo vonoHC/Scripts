@@ -152,6 +152,6 @@ Este proyecto utiliza la API pública de:
 # Implementaciones futuras
 
 - Manejo de excepciones más detallado.
-- Interfaz gráfica.
 - Colores en terminal.
+- Interfaz gráfica.
 - Consultas masivas desde archivos.
