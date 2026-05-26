@@ -89,7 +89,7 @@ python IPconsulter.py -i 8.8.8.8 -a -f resultado.txt
 ## Información de red
 
 - CIDR
-- IP inicial y final
+- IP inicial y final de la red 
 - ASN
 - Organización
 - País
